@@ -9,6 +9,7 @@ var audio = new Audio("music.mp3");
 var ding = new Audio("elevatording.mp3"); 
 var done = false;
 var fadeIn = true;
+var is_open = false;
 
 function elevatorOpen() {
     let start = Date.now(); // remember start time
@@ -132,6 +133,7 @@ el_con.hidden = true;
 el.style.opacity = "0%";
 document.getElementById("button").addEventListener("click", run);
 start_text.style.opacity = "0%";
+interior.hidden = true;
 
 function run() {
     el_con.hidden = false;
@@ -199,5 +201,149 @@ function transition() {
 }
 
 function newScreen() {
+    interior.hidden = false;
     interior.style.backgroundImage = "url('interior.png')";
 }
+
+document.addEventListener('keydown', switchInterior);
+
+function switchInterior() {
+    if (is_open) {
+        interiorClose();
+        is_open = false;
+    } else {
+        interiorOpen();
+        is_open = true;
+    }
+
+}
+
+function interiorOpen() {
+    let start = Date.now(); // remember start time
+
+    let timer = setInterval(function() {
+    // how much time passed from the start?
+    let timePassed = Date.now() - start;
+    let x = 100;
+
+    if (timePassed >= x ) {
+        ding.play();
+        interior.style.backgroundImage = "url('interior-open.png')";
+    } 
+
+    if (timePassed >= 2*x) {
+        interior.style.backgroundImage = "url('interior-open1.png')";
+    } 
+
+    if (timePassed >= 3*x) {
+        interior.style.backgroundImage = "url('interior-open2.png')";
+    } 
+
+    if (timePassed >= 4*x) {
+        interior.style.backgroundImage = "url('interior-open3.png')";
+    } 
+
+    if (timePassed >= 5*x) {
+        interior.style.backgroundImage = "url('interior-open4.png')";
+    } 
+
+    if (timePassed >= 6*x) {
+        interior.style.backgroundImage = "url('interior-open5.png')";
+    } 
+
+    if (timePassed >= 7*x) {
+        interior.style.backgroundImage = "url('interior-open6.png')";
+    } 
+
+    if (timePassed >= 8*x) {
+        interior.style.backgroundImage = "url('interior-open7.png')";
+    } 
+
+    if (timePassed >= 9*x) {
+        interior.style.backgroundImage = "url('interior-open8.png')";
+    } 
+
+    if (timePassed >= 10*x) {
+        clearInterval(timer); // finish the animation after 2 seconds
+        return;
+    } 
+
+    }, 20);
+}
+
+function interiorClose() {
+    let start = Date.now(); // remember start time
+
+    let timer = setInterval(function() {
+    // how much time passed from the start?
+    let timePassed = Date.now() - start;
+    let x = 100;
+
+    if (timePassed >= x ) {
+        ding.play();
+        interior.style.backgroundImage = "url('interior-open7.png')";
+    } 
+
+    if (timePassed >= 2*x) {
+        interior.style.backgroundImage = "url('interior-open6.png')";
+    } 
+
+    if (timePassed >= 3*x) {
+        interior.style.backgroundImage = "url('interior-open5.png')";
+    } 
+
+    if (timePassed >= 4*x) {
+        interior.style.backgroundImage = "url('interior-open4.png')";
+    } 
+
+    if (timePassed >= 5*x) {
+        interior.style.backgroundImage = "url('interior-open3.png')";
+    } 
+
+    if (timePassed >= 6*x) {
+        interior.style.backgroundImage = "url('interior-open2.png')";
+    } 
+
+    if (timePassed >= 7*x) {
+        interior.style.backgroundImage = "url('interior-open1.png')";
+    } 
+
+    if (timePassed >= 8*x) {
+        interior.style.backgroundImage = "url('interior-open.png')";
+    } 
+
+    if (timePassed >= 9*x) {
+        interior.style.backgroundImage = "url('interior.png')";
+    } 
+
+    if (timePassed >= 10*x) {
+        clearInterval(timer); // finish the animation after 2 seconds
+        return;
+    } 
+
+    }, 20);
+}
+
+function myFunction(x) {
+    if (x.matches) { // If media query matches
+        interior.style.backgroundImage = "url('interiorsmall.png')";
+    } else {
+        interior.style.backgroundImage = "url('interior.png')";
+    }
+  }
+  
+  // Create a MediaQueryList object
+  var x = window.matchMedia("(max-width: 1200px)")
+  
+  // Call listener function at run time
+  myFunction(x);
+  
+  // Attach listener function on state changes
+  x.addEventListener("change", function() {
+    myFunction(x);
+  });
+  
+
+  var buttons = document.querySelector(".button_imgs");
+
+  buttons.addEventListener('click', switchInterior);
