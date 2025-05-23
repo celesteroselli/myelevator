@@ -5,8 +5,28 @@
     transform: translate(-50%);
 }
 
+#button {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%);
+    background-color: red;
+    display: block;
+    z-index: 1;
+}
+
 #elevator-landing-icon {
     width: 700px;
+}
+
+#elevator-landing-text {
+    text-align: center;
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%);
+
 }
 
 h1, h2, p {
@@ -24,4 +44,18 @@ h1, h2, p {
     background-image: url("trace.svg");
     background-position: 25% 0%;
     background-size: 120%;
+}
+
+#interior {
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+    position: absolute;
+}
+
+#buttons {
+    
 }
