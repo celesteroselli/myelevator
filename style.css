@@ -1,11 +1,27 @@
 #elevator {
     position: absolute;
-    top: 50%;
     left: 50%;
+    width: 700px;
     transform: translate(-50%);
-    width: 500px;
 }
 
-.container {
+#elevator-landing-icon {
+    width: 700px;
+}
+
+h1, h2, p {
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+
+#container {
     position: relative;
+    min-height: 100vh;
+    min-width: 100vw;
+    padding: 0px;
+    margin: 0px;
+    background-image: url("trace.svg");
+    background-position: 25% 0%;
+    background-size: 120%;
 }
