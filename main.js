@@ -4,6 +4,7 @@ var el_icon = document.getElementById("elevator-landing-icon");
 var start_text = document.getElementById("elevator-landing-text");
 var myError = document.getElementById("error");
 var interior = document.getElementById("interior");
+var info = document.getElementById("info");
 var body = document.querySelector("body");
 var audio = new Audio("music.mp3"); 
 var ding = new Audio("elevatording.mp3"); 
@@ -134,6 +135,8 @@ el.style.opacity = "0%";
 document.getElementById("button").addEventListener("click", run);
 start_text.style.opacity = "0%";
 interior.hidden = true;
+info.hidden = true;
+
 
 function run() {
     el_con.hidden = false;
@@ -202,6 +205,7 @@ function transition() {
 
 function newScreen() {
     interior.hidden = false;
+    info.hidden = false;
     interior.style.backgroundImage = "url('interior.png')";
 }
 
@@ -343,7 +347,47 @@ function myFunction(x) {
     myFunction(x);
   });
   
+//buttons
+  var button1 = document.getElementById("button1");
+  button1.addEventListener('click', switchInterior);
+  button1.addEventListener('click', (evt) => addInfo("button1content", "button1title", "github.com"));
 
-  var buttons = document.querySelector(".button_imgs");
+  var button2 = document.getElementById("button2");
+  button2.addEventListener('click', switchInterior);
+  button2.addEventListener('click', (evt) => addInfo("button2content", "button2title", "github.com"));
+  
+  var button3 = document.getElementById("button3");
+  button3.addEventListener('click', switchInterior);
+  button3.addEventListener('click', (evt) => addInfo("button3content", "button3title", "github.com"));
 
-  buttons.addEventListener('click', switchInterior);
+  var button4 = document.getElementById("button4");
+  button4.addEventListener('click', switchInterior);
+  button4.addEventListener('click', (evt) => addInfo("button4content", "button4title", "github.com"));
+
+  var button5 = document.getElementById("button5");
+  button5.addEventListener('click', switchInterior);
+  button5.addEventListener('click', (evt) => addInfo("button5content", "button5title", "github.com"));
+
+  var button6 = document.getElementById("button6");
+  button6.addEventListener('click', switchInterior);
+  button6.addEventListener('click', (evt) => addInfo("button6content", "button6title", "github.com"));
+
+  var button7 = document.getElementById("button7");
+  button7.addEventListener('click', switchInterior);
+  button7.addEventListener('click', (evt) => addInfo("button7content", "button7title", "github.com"));
+
+  var button8 = document.getElementById("button8");
+  button8.addEventListener('click', switchInterior);
+  button8.addEventListener('click', (evt) => addInfo("button8content", "button8title", "github.com"));
+
+function addInfo(m_content, m_title, m_git) {
+    var title = document.getElementById("title");
+    var content = document.getElementById("content");
+    var git = document.getElementById("git");
+
+    title.innerHTML = m_title;
+    content.innerHTML = m_content;
+    git.href = m_git;
+}
+
+addInfo("<p>Hello!</p>", "Test title", "github.com");

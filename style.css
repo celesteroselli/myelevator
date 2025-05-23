@@ -52,7 +52,7 @@ h1, h2, p {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    z-index: 1;
+    z-index: 2;
     position: absolute;
 }
 
@@ -132,4 +132,15 @@ h1, h2, p {
     #buttons {
         right: 16%;
     }
+  }
+
+  #info {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    width: 275px;
+    height: 500px;
+    top: 20%;
+    background-color: red;
+    z-index: 1;
   }
