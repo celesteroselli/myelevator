@@ -57,14 +57,25 @@ h1, h2, p {
 }
 
 #buttons {
-    position: absolute;
+    z-index: 4;
+    position: relative;
     top: 25%;
-    margin-right: 70px;
-    right: 0%;
+    left: 100%;
+    margin-left: 13px;
+    margin-top: -150px;
     display: flex;
     flex-direction: row;
-  flex-wrap: wrap;
-    width: 150px;;
+    flex-wrap: wrap;
+    width: 150px;
+}
+
+#center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 700px;
+    transform: translate(-50%);
+    z-index: 3;
 }
 
 .button_imgs {
@@ -77,62 +88,7 @@ h1, h2, p {
         background-repeat: no-repeat;
         background-position: center;
     }
-    #buttons {
-        margin-right: 20px;
-        width: 20%;
-        top: 35%;
-    }
-    .button_imgs {
-        width: 60px;
-    }
-  }
-
-  @media (max-width: 1000px) {
-    .button_imgs {
-        width: 40px;
-    }
-    #buttons {
-        margin-right: 20px;
-        width: 20%;
-        top: 40%;
-    }
 }
-
-@media (max-width: 800px) {
-    .button_imgs {
-        width: 30px;
-    }
-    #buttons {
-        margin-right: 20px;
-        width: 20%;
-        top: 42%;
-    }
-}
-
-@media (min-width: 1200px) and (max-width: 1500px) {
-    #buttons {
-        right: 3%;
-    }
-  }
-
-  @media (min-width: 1320px) and (max-width: 1500px) {
-    #buttons {
-        right: 8%;
-    }
-  }
-
-  
-  @media (min-width: 1500px) and (max-width: 1650px) {
-    #buttons {
-        right: 13%;
-    }
-  }
-
-  @media (min-width: 1650px) {
-    #buttons {
-        right: 16%;
-    }
-  }
 
   #info {
     position: absolute;

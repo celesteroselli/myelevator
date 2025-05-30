@@ -5,12 +5,15 @@ var start_text = document.getElementById("elevator-landing-text");
 var myError = document.getElementById("error");
 var interior = document.getElementById("interior");
 var info = document.getElementById("info");
+var center = document.getElementById("center");
+var buttons = document.getElementById("buttons");
 var body = document.querySelector("body");
 var audio = new Audio("music.mp3"); 
 var ding = new Audio("elevatording.mp3"); 
 var done = false;
 var fadeIn = true;
 var is_open = false;
+var small = false;
 
 function elevatorOpen() {
     let start = Date.now(); // remember start time
@@ -72,13 +75,18 @@ function zoom() {
         transition();
         return;
     } 
+    viewportWidth = window.innerWidth;
+    viewportHeight = window.innerHeight;
 
-    el.style.top = 150 - (timePassed / 2) + "px";
-    el.style.left = 50 - (timePassed / 27) + "%";
-    el_icon.style.width = 700 + (timePassed / 0.8) + "px";
+    width = 700 + (timePassed / 0.8);
+    el_icon.style.width = width + "px";
+    el.style.width = width + "px";
+    el.style.right = (viewportWidth - width)/2 + "px";
+    el.style.transform = "transform: translate(0%);";
+    el.style.top = (viewportHeight - ((638/463)*width))/3 + "px";
 
     }, 20);
-}
+}3
 
 
 function downAnimation() {
@@ -131,6 +139,8 @@ function comeUp(timePassed) {
 
 //setups
 el_con.hidden = true;
+center.hidden = true;
+buttons.hidden = true;
 el.style.opacity = "0%";
 document.getElementById("button").addEventListener("click", run);
 start_text.style.opacity = "0%";
@@ -207,6 +217,9 @@ function newScreen() {
     interior.hidden = false;
     info.hidden = false;
     interior.style.backgroundImage = "url('interior.png')";
+    center.hidden = false;
+    buttons.hidden = false;
+    myFunction(x);
 }
 
 document.addEventListener('keydown', switchInterior);
@@ -232,39 +245,75 @@ function interiorOpen() {
 
     if (timePassed >= x ) {
         ding.play();
-        interior.style.backgroundImage = "url('interior-open.png')";
+        if (small) {
+            interior.style.backgroundImage = "url('interiorsmall-open.png')";
+        } else {
+            interior.style.backgroundImage = "url('interior-open.png')";
+        }
     } 
 
     if (timePassed >= 2*x) {
-        interior.style.backgroundImage = "url('interior-open1.png')";
+        if (small) {
+            interior.style.backgroundImage = "url('interiorsmall-open1.png')";
+        } else {
+            interior.style.backgroundImage = "url('interior-open1.png')";
+        }
     } 
 
     if (timePassed >= 3*x) {
-        interior.style.backgroundImage = "url('interior-open2.png')";
+        if (small) {
+            interior.style.backgroundImage = "url('interiorsmall-open2.png')";
+        } else {
+            interior.style.backgroundImage = "url('interior-open2.png')";
+        }
     } 
 
     if (timePassed >= 4*x) {
-        interior.style.backgroundImage = "url('interior-open3.png')";
+        if (small) {
+            interior.style.backgroundImage = "url('interiorsmall-open3.png')";
+        } else {
+            interior.style.backgroundImage = "url('interior-open3.png')";
+        }
     } 
 
     if (timePassed >= 5*x) {
-        interior.style.backgroundImage = "url('interior-open4.png')";
+        if (small) {
+            interior.style.backgroundImage = "url('interiorsmall-open4.png')";
+        } else {
+            interior.style.backgroundImage = "url('interior-open4.png')";
+        }
     } 
 
     if (timePassed >= 6*x) {
-        interior.style.backgroundImage = "url('interior-open5.png')";
+        if (small) {
+            interior.style.backgroundImage = "url('interiorsmall-open5.png')";
+        } else {
+            interior.style.backgroundImage = "url('interior-open5.png')";
+        }
     } 
 
     if (timePassed >= 7*x) {
-        interior.style.backgroundImage = "url('interior-open6.png')";
+        if (small) {
+            interior.style.backgroundImage = "url('interiorsmall-open6.png')";
+        } else {
+            interior.style.backgroundImage = "url('interior-open6.png')";
+        }
     } 
 
     if (timePassed >= 8*x) {
-        interior.style.backgroundImage = "url('interior-open7.png')";
+        if (small) {
+            interior.style.backgroundImage = "url('interiorsmall-open7.png')";
+        } else {
+            interior.style.backgroundImage = "url('interior-open7.png')";
+        }
     } 
 
     if (timePassed >= 9*x) {
-        interior.style.backgroundImage = "url('interior-open8.png')";
+        if (small) {
+            interior.style.backgroundImage = "url('interiorsmall-open8.png')";
+        } else {
+            interior.style.backgroundImage = "url('interior-open8.png')";
+        }
     } 
 
     if (timePassed >= 10*x) {
@@ -285,39 +334,75 @@ function interiorClose() {
 
     if (timePassed >= x ) {
         ding.play();
-        interior.style.backgroundImage = "url('interior-open7.png')";
+        if (small) {
+            interior.style.backgroundImage = "url('interiorsmall-open7.png')";
+        } else {
+            interior.style.backgroundImage = "url('interior-ope7n.png')";
+        }
     } 
 
     if (timePassed >= 2*x) {
-        interior.style.backgroundImage = "url('interior-open6.png')";
+        if (small) {
+            interior.style.backgroundImage = "url('interiorsmall-open6.png')";
+        } else {
+            interior.style.backgroundImage = "url('interior-open6.png')";
+        }
     } 
 
     if (timePassed >= 3*x) {
-        interior.style.backgroundImage = "url('interior-open5.png')";
+        if (small) {
+            interior.style.backgroundImage = "url('interiorsmall-open5.png')";
+        } else {
+            interior.style.backgroundImage = "url('interior-open5.png')";
+        }
     } 
 
     if (timePassed >= 4*x) {
-        interior.style.backgroundImage = "url('interior-open4.png')";
+        if (small) {
+            interior.style.backgroundImage = "url('interiorsmall-open4.png')";
+        } else {
+            interior.style.backgroundImage = "url('interior-open4.png')";
+        }
     } 
 
     if (timePassed >= 5*x) {
-        interior.style.backgroundImage = "url('interior-open3.png')";
+        if (small) {
+            interior.style.backgroundImage = "url('interiorsmall-open3.png')";
+        } else {
+            interior.style.backgroundImage = "url('interior-open3.png')";
+        }
     } 
 
     if (timePassed >= 6*x) {
-        interior.style.backgroundImage = "url('interior-open2.png')";
+        if (small) {
+            interior.style.backgroundImage = "url('interiorsmall-open2.png')";
+        } else {
+            interior.style.backgroundImage = "url('interior-open2.png')";
+        }
     } 
 
     if (timePassed >= 7*x) {
-        interior.style.backgroundImage = "url('interior-open1.png')";
+        if (small) {
+            interior.style.backgroundImage = "url('interiorsmall-open1.png')";
+        } else {
+            interior.style.backgroundImage = "url('interior-open1.png')";
+        }
     } 
 
     if (timePassed >= 8*x) {
-        interior.style.backgroundImage = "url('interior-open.png')";
+        if (small) {
+            interior.style.backgroundImage = "url('interiorsmall-open.png')";
+        } else {
+            interior.style.backgroundImage = "url('interior-open.png')";
+        }
     } 
 
     if (timePassed >= 9*x) {
-        interior.style.backgroundImage = "url('interior.png')";
+        if (small) {
+            interior.style.backgroundImage = "url('interiorsmall.png')";
+        } else {
+            interior.style.backgroundImage = "url('interior.png')";
+        }
     } 
 
     if (timePassed >= 10*x) {
@@ -327,22 +412,42 @@ function interiorClose() {
 
     }, 20);
 }
-
 function myFunction(x) {
     if (x.matches) { // If media query matches
-        interior.style.backgroundImage = "url('interiorsmall.png')";
+        small = true;
+        if(is_open) {
+            interior.style.backgroundImage = "url('interiorsmall-open8.png')";
+        } else {
+            interior.style.backgroundImage = "url('interiorsmall.png')";
+        }
+        buttonChange = setInterval(changeButtons, 100);
+
     } else {
-        interior.style.backgroundImage = "url('interior.png')";
+        small = false;
+        if(is_open) {
+            interior.style.backgroundImage = "url('interior-open8.png')";
+        } else {
+            interior.style.backgroundImage = "url('interior.png')";
+        }
+        if (buttonChange != null) {
+            clearInterval(buttonChange);
+        }
     }
+  }
+
+  function changeButtons() {
+    viewportWidth = window.innerWidth;
+    size = 700 - ((1200 - window.innerWidth)/2);
+    center.style.width = size + "px";
+    info.style.width = (size*0.39) + "px";
+    info.style.height = (1.82 * (size*0.39)) + "px";
+    change = (425/579)*((1200 - window.innerWidth)/2)*(0.5);
+    info.style.marginTop = change + "px";
   }
   
   // Create a MediaQueryList object
   var x = window.matchMedia("(max-width: 1200px)")
-  
-  // Call listener function at run time
-  myFunction(x);
-  
-  // Attach listener function on state changes
+
   x.addEventListener("change", function() {
     myFunction(x);
   });
