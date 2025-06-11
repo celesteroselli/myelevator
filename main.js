@@ -541,8 +541,8 @@ function myFunction(x) {
     viewportWidth = window.innerWidth;
     size = 700 - ((1200 - window.innerWidth)/2);
     center.style.width = size + "px";
-    info.style.width = (size*0.39) + "px";
-    info.style.height = (1.82 * (size*0.39)) + "px";
+    info.style.width = (size*0.3) + "px";
+    info.style.height = (1.82 * (size*0.3)) + "px";
     change = (425/579)*((1200 - window.innerWidth)/2)*(0.5);
     info.style.marginTop = change + "px";
     buttons.style.paddingLeft =  45 - (change/1.8) + "px";
