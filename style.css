@@ -5,6 +5,14 @@
     transform: translate(-50%);
 }
 
+#mute {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 6%;
+  z-index: 50;
+}
+
 #button {
     position: absolute;
     left: 50%;
@@ -93,6 +101,20 @@ h1, h2, h3, h4, p {
     }
 }
 
+@media (min-height: 950px) {
+  #interior {
+      background-size: 99.7%;
+      background-repeat: no-repeat;
+      background-position: center;
+      top: 0%;
+  }
+
+  #mute {
+    top: 70px;
+    left: 30px;
+  }
+}
+
   #info {
     position: absolute;
     left: 50%;
@@ -135,12 +157,4 @@ h1, h2, h3, h4, p {
     100% {
       transform: translate(-100%, 0);
     }
-  }
-
-  #mute {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    width: 6%;
-    z-index: 50;
   }

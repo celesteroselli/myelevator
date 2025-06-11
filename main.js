@@ -228,8 +228,6 @@ function transition() {
     }
 
     }, 20);
-    
-    
 
 }
 
@@ -563,9 +561,14 @@ function myFunction(x) {
   
   // Create a MediaQueryList object
   var x = window.matchMedia("(max-width: 1200px)")
+  var y = window.matchMedia("(min-width: 920px)")
 
   x.addEventListener("change", function() {
     myFunction(x);
+  });
+
+  y.addEventListener("change", function() {
+    myFunction2(y);
   });
   
 //buttons
