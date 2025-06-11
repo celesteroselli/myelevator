@@ -29,7 +29,7 @@
 
 }
 
-h1, h2, p {
+h1, h2, h3, h4, p {
     font-family: "Pixelify Sans", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
@@ -54,6 +54,7 @@ h1, h2, p {
     background-position: center;
     z-index: 2;
     position: absolute;
+    pointer-events: none;
 }
 
 #buttons {
@@ -61,12 +62,13 @@ h1, h2, p {
     position: relative;
     top: 25%;
     left: 100%;
-    margin-left: 13px;
+    padding-left: 45px;
     margin-top: -150px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     width: 150px;
+    pointer-events: auto;
 }
 
 #center {
@@ -76,6 +78,7 @@ h1, h2, p {
     width: 700px;
     transform: translate(-50%);
     z-index: 3;
+    pointer-events: none;
 }
 
 .button_imgs {
@@ -97,6 +100,39 @@ h1, h2, p {
     width: 275px;
     height: 500px;
     top: 20%;
-    background-color: red;
     z-index: 1;
+    color: white;
+    overflow-y:scroll;
+    pointer-events: auto;
+  }
+
+  #marquee {
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    position: absolute;
+    z-index: 5;
+    color: white;
+    width: 180px;
+    height: 45px;
+    top: 25%;
+    left: 100%;
+    margin-left: 10px;
+    margin-top: -355px;
+    font-size: 3em;
+  }
+  
+  #marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 9s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(-100%, 0);
+    }
   }
