@@ -136,3 +136,11 @@ h1, h2, h3, h4, p {
       transform: translate(-100%, 0);
     }
   }
+
+  #mute {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 6%;
+    z-index: 50;
+  }

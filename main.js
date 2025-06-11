@@ -9,14 +9,22 @@ var info = document.getElementById("info");
 var center = document.getElementById("center");
 var buttons = document.getElementById("buttons");
 var marquee = document.getElementById("marquee");
+var volume = document.getElementById("mute");
+
 var body = document.querySelector("body");
 var btnimgs = document.querySelectorAll(".button_imgs");
 var audio = new Audio("music.mp3"); 
-var ding = new Audio("elevatording.mp3"); 
+var ding = new Audio("open.mp3"); 
+var dingdone = new Audio("close.mp3"); 
+
+var lastpressed = 0;
+
+
 var done = false;
 var fadeIn = true;
 var is_open = false;
 var small = false;
+var mute = false;
 
 function elevatorOpen() {
     let start = Date.now(); // remember start time
@@ -25,6 +33,8 @@ function elevatorOpen() {
     // how much time passed from the start?
     let timePassed = Date.now() - start;
     let x = 150;
+
+    ding.play();
 
     if (timePassed >= x ) {
         el_icon.src = "pixil-frame-1.png";
@@ -56,7 +66,6 @@ function elevatorOpen() {
 
     if (timePassed >= 8*x) {
         clearInterval(timer); // finish the animation after 2 seconds
-        ding.play();
         zoom();
         return;
     } 
@@ -230,17 +239,89 @@ function newScreen() {
     myFunction(x);
 }
 
-document.addEventListener('keydown', switchInterior);
-
-function switchInterior() {
-    if (is_open) {
+function switchInterior(number) {
+    console.log(number);
+    if ((number!=lastpressed)&&(is_open==true)) {
         interiorClose();
-        is_open = false;
-    } else {
-        interiorOpen();
-        is_open = true;
-    }
 
+        var switchcount = 0;
+        let timer = setInterval(function() {
+            switchcount++;
+
+            if (switchcount > 40) {
+                switch(number) {
+                    case 1:
+                        console.log("case #1");
+                        addInfo('<iframe width="100%" height="auto" src="https://www.youtube.com/embed/QXcFMjKy4sk?si=FBT0rwFLe2b5LI93" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>',"Card Trick");
+                        break;
+                    case 2:
+                        console.log("case #2");
+                        addInfo("<p>I got into an argument with the elevator.<br><strong>It was wrong on so many levels.</strong></p>", "Joke #1");
+                        break;
+                    case 3:
+                        console.log("case #3");
+                        addInfo("<p>You know, I told my friend a joke while we were in the elevator once…<br><strong>It had its ups and downs, but it really lifted his spirits.</strong></p>", "Joke #2");
+                        break;
+                    case 4:
+                        console.log("case #4");
+                        addInfo(hughes, "Poem #1");
+                        break;
+                    case 5:
+                        console.log("case #5");
+                        addInfo(rainwater, "Poem #2");
+                        break;
+                    case 6:
+                        console.log("case #6");
+                        addInfo(sexton, "Poem #3");
+                    default:
+                        addInfo('<iframe width="100%" height="auto" src="https://www.youtube.com/embed/QXcFMjKy4sk?si=FBT0rwFLe2b5LI93" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>',"Card Trick");
+                    }
+                
+                clearInterval(timer);
+                interiorOpen();
+            }
+
+        }, 20);
+
+        is_open = true;
+    } else {
+        if (is_open) {
+            interiorClose();
+            is_open = false;
+        } else {
+            switch(number) {
+                case 1:
+                    console.log("case #1");
+                    addInfo('<iframe width="100%" height="auto" src="https://www.youtube.com/embed/QXcFMjKy4sk?si=FBT0rwFLe2b5LI93" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>',"Card Trick");
+                    break;
+                case 2:
+                    console.log("case #2");
+                    addInfo("<p>I got into an argument with the elevator.<br><strong>It was wrong on so many levels.</strong></p>", "Joke #1");
+                    break;
+                case 3:
+                    console.log("case #3");
+                    addInfo("<p>You know, I told my friend a joke while we were in the elevator once…<br><strong>It had its ups and downs, but it really lifted his spirits.</strong></p>", "Joke #2");
+                    break;
+                case 4:
+                    console.log("case #4");
+                    addInfo(hughes, "Poem #1");
+                    break;
+                case 5:
+                    console.log("case #5");
+                    addInfo(rainwater, "Poem #2");
+                    break;
+                case 6:
+                    console.log("case #6");
+                    addInfo(sexton, "Poem #3");
+                default:
+                    addInfo('<iframe width="100%" height="auto" src="https://www.youtube.com/embed/QXcFMjKy4sk?si=FBT0rwFLe2b5LI93" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>',"Card Trick");
+                }
+
+            interiorOpen();
+            is_open = true;
+        }
+    }
+    lastpressed = number;
 }
 
 function interiorOpen() {
@@ -251,8 +332,9 @@ function interiorOpen() {
     let timePassed = Date.now() - start;
     let x = 100;
 
+    ding.play();
+
     if (timePassed >= x ) {
-        ding.play();
         if (small) {
             interior.style.backgroundImage = "url('interiorsmall-open.png')";
         } else {
@@ -340,8 +422,10 @@ function interiorClose() {
     let timePassed = Date.now() - start;
     let x = 100;
 
+    dingdone.play();
+
     if (timePassed >= x ) {
-        ding.play();
+
         if (small) {
             interior.style.backgroundImage = "url('interiorsmall-open7.png')";
         } else {
@@ -485,35 +569,28 @@ function myFunction(x) {
   
 //buttons
   var button1 = document.getElementById("button1");
-  button1.addEventListener('click', switchInterior);
-  button1.addEventListener('click', (evt) => addInfo('<iframe width="100%" height="auto" src="https://www.youtube.com/embed/QXcFMjKy4sk?si=FBT0rwFLe2b5LI93" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>',"Card Trick"));
+  button1.addEventListener('click', (evt) => switchInterior(1));
 
   var button2 = document.getElementById("button2");
-  button2.addEventListener('click', switchInterior);
-  button2.addEventListener('click', (evt) => addInfo("<p>I got into an argument with the elevator.<br><strong>It was wrong on so many levels.</strong></p>", "Joke #1"));
+  button2.addEventListener('click', (evt) => switchInterior(2));
   
   var button3 = document.getElementById("button3");
-  button3.addEventListener('click', switchInterior);
-  button3.addEventListener('click', (evt) => addInfo("<p>You know, I told my friend a joke while we were in the elevator once…<br><strong>It had its ups and downs, but it really lifted his spirits.</strong></p>", "Joke #2"));
+  button3.addEventListener('click', (evt) => switchInterior(3));
 
   var hughes = "<p>I got a job now<br>Runnin’ an elevator<br>In the Dennison Hotel in Jersey,<br>Job aint no good though.<br>No money around.<br>Jobs are just chances<br>Like everything else.<br>Maybe a little luck now,<br>Maybe not.<br>Maybe a good job sometimes:<br>Step out o’ the barrel, boy.<br>Two new suits an’<br>A woman to sleep with.<br>Maybe no luck for a long time.<br>Only the elevators<br>Goin’ up an’ down,<br>Up an’ down,<br>Or somebody else’s shoes<br>To shine,<br>Or greasy pots in a dirty kitchen.<br>I been running’ this<br>Elevator too long.<br>Guess I’ll quit now.</p>"
 
   var button4 = document.getElementById("button4");
-  button4.addEventListener('click', switchInterior);
-  button4.addEventListener('click', 
-    (evt) => addInfo(hughes, "Poem #1"));
+  button4.addEventListener('click', (evt) => switchInterior(4));
 
 var rainwater = "<p>When I go to paradise<br>let there be only one<br>bell, scented with rainwater<br>and with tiled roofs at dawn.<br><br>When I decide to go<br>to paradise, I will go<br>there in the elevator,<br>at night, of Castelletto,<br>stealing a little piece<br>of my eternal peace.<br><br>I’ll go there stealing (perhaps<br>in my mouth) a few crumbs<br>of bread for my two little ones.<br>But the black light of the sea<br>will pulsate rhythmically<br>between my brows, and . . . perhaps<br>(perhaps) on the terrace where<br>they’re wearing dressing gowns,<br>among the stirred-up crowds<br>of boys (among maids bright<br>with life and with face powder<br>enjoying a free hour),<br>who knows, I might recognize<br>my mother in the lamplight.<br><br>With her I will turn to see<br>the white lights on the sea.<br>We’ll stand at the iron railing,<br>alone and hand in hand,<br>betrothed, as we had never<br>been in all those years.<br>In the shudder of the railing.</p>"
 
   var button5 = document.getElementById("button5");
-  button5.addEventListener('click', switchInterior);
-  button5.addEventListener('click', (evt) => addInfo(rainwater, "Poem #2"));
+  button5.addEventListener('click', (evt) => switchInterior(5));
 
 var sexton = "<p>As the fireman said:<br>Don't book a room over the fifth floor<br>in any hotel in New York.<br>They have ladders that will reach further<br>but no one will climb them.<br>As the New York Times said:<br>The elevator always seeks out<br>the floor of the fire<br>and automatically opens<br>and won't shut.<br>These are the warnings<br>that you must forget<br>if you're climbing out of yourself.<br>If you're going to smash into the sky.<br><br>Many times I've gone past<br>the fifth floor,<br>cranking upward,<br>but only once<br>have I gone all the way up.<br>Sixtieth floor:<br>small plants and swans bending<br>into their grave.<br>Floor two hundred:<br>mountains with the patience of a cat,<br>silence wearing its sneakers.<br>Floor five hundred:<br>messages and letters centuries old,<br>birds to drink,<br>a kitchen of clouds.<br>Floor six thousand:<br>the stars,<br>skeletons on fire,<br>their arms singing.<br>And a key,<br>a very large key,<br>that opens something —<br>some useful door —<br>somewhere —<br>up there.</p>"
 
   var button6 = document.getElementById("button6");
-  button6.addEventListener('click', switchInterior);
-  button6.addEventListener('click', (evt) => addInfo(sexton, "Poem #3"));
+  button6.addEventListener('click', (evt) => switchInterior(6));
 
 function addInfo(m_content, m_title) {
     var title = document.getElementById("title");
@@ -524,3 +601,13 @@ function addInfo(m_content, m_title) {
 }
 
 addInfo("<p>Hello!</p>", "Test title", "github.com");
+
+function switchmute() {
+    if (mute) {
+        audio.play();
+        mute = false;
+    } else {
+        audio.pause();
+        mute = true;
+    }
+}
